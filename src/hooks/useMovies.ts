@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-// import { movieService } from '@/services/movieService';
+import { movieService } from '@/services/movieService';
 
 // TODO: Create custom hooks using React Query
 // Reference: https://tanstack.com/query/latest/docs/framework/react/overview
@@ -12,7 +12,7 @@ export const usePopularMovies = () => {
     queryKey: ['movies', 'popular'],
     queryFn: () => {
       // TODO: Call your movie service function
-      throw new Error('Not implemented');
+      return movieService.getPopularMovies();
     },
   });
 };

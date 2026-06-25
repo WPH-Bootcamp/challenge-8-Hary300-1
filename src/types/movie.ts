@@ -13,3 +13,11 @@ export interface MovieResponse {
 }
 
 // TODO: Add more types as needed (Genre, Video, etc.)
+export interface PopularMovies {
+  id: number;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+  backdrop_path: string;
+}
