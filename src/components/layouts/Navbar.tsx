@@ -1,14 +1,43 @@
+import { useEffect, useState } from 'react';
 import Logo from '../common/Logo';
 import OffCanvasMenu from '../common/OffCanvasMenu';
 import OffCanvasSearch from '../common/OffCanvasSearch';
 import SearchBar from '../features/SearchBar';
 import Container from './Container';
 import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 
-const Navbar = () => {
+type NavBarProps = {
+  className: string;
+};
+
+const Navbar = ({ className }: NavBarProps) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isScrolled]);
+
   return (
-    <nav>
-      <Container className='flex justify-between items-center h-16 md:h-25 lg:h-0 '>
+    <nav
+      className={cn(
+        'fixed top-0 inset-x-0 w-full z-50',
+        isScrolled ? 'backdrop-blur-2xl' : '',
+        className
+      )}
+    >
+      <Container className='flex justify-between items-center py-4.5 lg:py-5.5 max-w-360 m-auto'>
         <div className='flex items-center gap-8xl'>
           <Logo />
           <div className='hidden md:flex md:gap-6xl'>

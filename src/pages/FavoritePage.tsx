@@ -3,7 +3,7 @@ import MainLayout from '@/components/layouts/MainLayout';
 
 const FavoritePage = () => {
   return (
-    <MainLayout>
+    <MainLayout position='sticky'>
       <section id='favorite-list'>
         <Container>
           <h1>Favorite page</h1>
