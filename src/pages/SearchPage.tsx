@@ -1,3 +1,4 @@
+import EmptyDataPage from '@/components/common/EmptyData';
 import MovieList from '@/components/features/MovieList';
 import Container from '@/components/layouts/Container';
 import MainLayout from '@/components/layouts/MainLayout';
@@ -20,7 +21,11 @@ const SearchPage = () => {
     <MainLayout position='sticky'>
       <section id='search-result-list'>
         <Container className='pt-3xl pb-19.25 lg:pt-7xl lg:pb-41.5'>
-          <MovieList movies={movies} />
+          {movies.length === 0 ? (
+            <EmptyDataPage variant='search' />
+          ) : (
+            <MovieList movies={movies} />
+          )}
         </Container>
       </section>
     </MainLayout>
