@@ -52,8 +52,6 @@ const HeroSection = ({ data }: HeroSectionProps) => {
       </div>
       <Container>
         <MovieDetailGrid
-          // detail={data.detail}
-          // videoKey={data.videoKey}
           data={data}
           posterImageUrl={posterImageUrl}
           formattedDate={formattedDate}

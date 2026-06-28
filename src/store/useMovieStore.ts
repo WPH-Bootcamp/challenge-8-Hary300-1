@@ -1,4 +1,4 @@
-import type { MovieFullDetails } from '@/types/movie';
+import type { SearchMovieItem } from '@/types/movie';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 // import { Movie } from '@/types/movie';
@@ -9,9 +9,9 @@ interface MovieStore {
   // Examples: favorites, watchlist, selectedMovie, etc.
   // TODO: Add action methods
   // Examples: addToFavorites, removeFromFavorites, etc.
-  favorite: MovieFullDetails[];
+  favorite: SearchMovieItem[];
   totalItems: number;
-  addFavorite: (movie: MovieFullDetails) => void;
+  addFavorite: (movie: SearchMovieItem) => void;
   removeFavorite: (movieId: number) => void;
 }
 
@@ -36,7 +36,7 @@ export const useMovieStore = create<MovieStore>()(
 
       removeFavorite: (movieId) =>
         set((state) => ({
-          favorite: state.favorite.filter((m) => m.detail.id !== movieId),
+          favorite: state.favorite.filter((m) => m.id !== movieId),
           totalItems: state.favorite.length - 1,
         })),
     }),

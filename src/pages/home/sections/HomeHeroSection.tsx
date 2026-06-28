@@ -1,11 +1,9 @@
 import FadeOverlay from '@/components/ui/app-ui/FadeOverlay';
-// import WatchTrailer from '@/components/ui/app-ui/WatchTrailerButton';
+import WatchTrailerButton from '@/components/ui/app-ui/WatchTrailerButton';
 import { Button } from '@/components/ui/button';
-// import { useMovieFullDetails, useTrendingMovies } from '@/hooks/useMovies';
 import { useTrendingMovies } from '@/hooks/useMovies';
 import { IMAGE_SIZES } from '@/lib/constants';
 import { getImageUrl } from '@/lib/utils';
-import { PlayIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 const randomIndex = Math.floor(Math.random() * 20);
 
@@ -20,18 +18,8 @@ const HomeHeroSection = () => {
   const movies = trendingData?.results;
   const featuredMovie = movies?.[randomIndex];
 
-  // const {
-  //   data: detailData,
-  //   isLoading: isLoadingDetail,
-  //   error: errorDetail,
-  // } = useMovieFullDetails(featuredMovie?.id);
-
-  // if (!detailData?.videoKey) return null;
-
-  // if (isLoadingTrending || isLoadingDetail) return <p>Loading...</p>;
   if (isLoadingTrending) return <p>Loading...</p>;
   if (errorTrending) return <p>{errorTrending.message}</p>;
-  // if (errorDetail) return <p>{errorDetail.message}</p>;
 
   const path = featuredMovie?.backdrop_path;
   if (!path) return null;
@@ -66,10 +54,8 @@ const HomeHeroSection = () => {
           </p>
         </div>
         <div className='flex flex-col md:flex-row gap-xl lg:max-w-119 '>
-          {/* <WatchTrailer videoKey={detailData.videoKey} /> */}
-          <Button>
-            Watch Trailer <PlayIcon />
-          </Button>
+          <WatchTrailerButton movieId={featuredMovie.id} />
+
           <Button
             variant={'outline'}
             onClick={() => handleDetailClick(featuredMovie.id)}

@@ -15,13 +15,7 @@ const MovieDetailPage = () => {
   return (
     <MainLayout>
       <main className='flex flex-col gap-3xl'>
-        <HeroSection
-          data={data}
-          // detail={data.detail}
-          // genre={data.genre}
-          // ageLimit={data.ageLimit}
-          // videoKey={data.videoKey}
-        />
+        <HeroSection data={data} />
         <OverviewSection overview={data?.detail.overview} />
         <CastSection cast={data.cast} />
       </main>

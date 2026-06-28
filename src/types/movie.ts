@@ -5,7 +5,7 @@
 /** ===========================
  * MOVIE
  * ============================*/
-export interface BaseMovie {
+export interface SearchMovieItem {
   // TODO: Add movie properties based on TMDB API response
   // Examples: id, title, overview, poster_path, etc.
   id: number;
@@ -15,10 +15,6 @@ export interface BaseMovie {
   vote_average: number;
   poster_path: string | null;
   backdrop_path: string | null;
-}
-
-export interface SearchMovieItem extends BaseMovie {
-  genre_ids: number[];
 }
 
 export interface MoviePaginationResponse {
@@ -76,7 +72,7 @@ export interface VideoResponse {
 /** ===========================
  * MOVIE DETAIL
  * ============================*/
-export interface MovieDetailResponse extends BaseMovie {
+export interface MovieDetailResponse extends SearchMovieItem {
   genres: { id: number; name: string }[];
 }
 

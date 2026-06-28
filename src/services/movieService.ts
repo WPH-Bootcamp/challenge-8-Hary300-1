@@ -57,7 +57,7 @@ export const movieService = {
 
   searchMovies: async (
     query: string,
-    page: number
+    page: number = 1
   ): Promise<MoviePaginationResponse> => {
     const { data } = await api.get<MoviePaginationResponse>(
       `/search/movie?query=${query}&page=${page}`

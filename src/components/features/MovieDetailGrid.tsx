@@ -1,14 +1,10 @@
-// import type { MovieDetailResponse, MovieFullDetails } from '@/types/movie';
 import type { MovieFullDetails } from '@/types/movie';
 import { Calendar1Icon, type LucideIcon } from 'lucide-react';
 import WatchTrailerButton from '../ui/app-ui/WatchTrailerButton';
 import FavoriteButton from '../ui/app-ui/FavoriteButton';
 import StatCard from './StatCard';
-// import { useMovieStore } from '@/store/useMovieStore';
 
 type MovieDetailGridProps = {
-  // detail: MovieDetailResponse;
-  // videoKey: string | undefined;
   data: MovieFullDetails;
   posterImageUrl: string;
   formattedDate: string;
@@ -22,8 +18,6 @@ type MovieDetailGridProps = {
 };
 
 const MovieDetailGrid = ({
-  // detail,
-  // videoKey,
   data,
   posterImageUrl,
   formattedDate,
@@ -46,8 +40,8 @@ const MovieDetailGrid = ({
       </div>
 
       <div className='flex gap-xl col-span-2 items-center lg:col-span-1 lg:max-w-[288px]'>
-        {data.videoKey && <WatchTrailerButton videoKey={data.videoKey} />}
-        <FavoriteButton data={data} />
+        {data.videoKey && <WatchTrailerButton movieId={data.detail.id} />}
+        <FavoriteButton data={data.detail} />
       </div>
 
       <div className='col-span-2 flex gap-lg lg:gap-2xl lg:col-span-1'>
