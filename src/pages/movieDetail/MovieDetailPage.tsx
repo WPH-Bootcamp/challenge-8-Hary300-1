@@ -4,6 +4,7 @@ import OverviewSection from './sections/OverviewSection';
 import CastSection from './sections/CastSection';
 import { useMovieFullDetails } from '@/hooks/useMovies';
 import { useParams } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -19,6 +20,16 @@ const MovieDetailPage = () => {
         <OverviewSection overview={data?.detail.overview} />
         <CastSection cast={data.cast} />
       </main>
+      <Toaster
+        toastOptions={{
+          classNames: {
+            toast:
+              '!bg-black/25 !backdrop-blur-2xl !border-0 !text-white !rounded-2xl ',
+          },
+        }}
+        offset={{ top: '114px' }}
+        mobileOffset={{ top: '80px' }}
+      />
     </MainLayout>
   );
 };

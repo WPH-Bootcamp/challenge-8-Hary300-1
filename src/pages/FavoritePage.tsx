@@ -3,6 +3,7 @@ import Container from '@/components/layouts/Container';
 import MainLayout from '@/components/layouts/MainLayout';
 import { useMovieStore } from '@/store/useMovieStore';
 import EmptyDataPage from '@/components/common/EmptyData';
+import { Toaster } from 'sonner';
 
 const FavoritePage = () => {
   const favorite = useMovieStore((state) => state.favorite);
@@ -20,6 +21,16 @@ const FavoritePage = () => {
             <MovieList movies={favorite} />
           )}
         </Container>
+        <Toaster
+          toastOptions={{
+            classNames: {
+              toast:
+                '!bg-black/25 !backdrop-blur-2xl !border-0 !text-white !rounded-2xl ',
+            },
+          }}
+          offset={{ top: '114px' }}
+          mobileOffset={{ top: '80px' }}
+        />
       </section>
     </MainLayout>
   );

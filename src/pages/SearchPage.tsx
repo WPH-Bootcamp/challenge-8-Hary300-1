@@ -4,6 +4,7 @@ import Container from '@/components/layouts/Container';
 import MainLayout from '@/components/layouts/MainLayout';
 import { useSearchMovie } from '@/hooks/useMovies';
 import { useSearchParams } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 const SearchPage = () => {
   const [searchQuery] = useSearchParams();
@@ -27,6 +28,16 @@ const SearchPage = () => {
             <MovieList movies={movies} />
           )}
         </Container>
+        <Toaster
+          toastOptions={{
+            classNames: {
+              toast:
+                '!bg-black/25 !backdrop-blur-2xl !border-0 !text-white !rounded-2xl ',
+            },
+          }}
+          offset={{ top: '114px' }}
+          mobileOffset={{ top: '80px' }}
+        />
       </section>
     </MainLayout>
   );
