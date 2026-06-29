@@ -5,6 +5,7 @@ import MainLayout from '@/components/layouts/MainLayout';
 import { useSearchMovie } from '@/hooks/useMovies';
 import { useSearchParams } from 'react-router-dom';
 import { Toaster } from 'sonner';
+import SearchPageSkeleton from './SearchPageSkeleton';
 
 const SearchPage = () => {
   const [searchQuery] = useSearchParams();
@@ -12,7 +13,7 @@ const SearchPage = () => {
   const query = searchQuery.get('query') ?? '';
   const { data, isLoading, error } = useSearchMovie(query, 1);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <SearchPageSkeleton />;
   if (error) return <p>{error.message}</p>;
 
   const movies = data?.results;
