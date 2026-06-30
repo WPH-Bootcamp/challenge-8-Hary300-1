@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { fadeIn } from '@/motions';
 import { useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ImageOffIcon } from 'lucide-react';
 
 type HeroSectionProps = {
   data: MovieFullDetails;
@@ -21,10 +22,10 @@ const HeroSection = ({ data }: HeroSectionProps) => {
   const posterSize = IMAGE_SIZES.poster.medium;
   const backdropPath = data.detail.backdrop_path;
   const posterPath = data.detail.poster_path;
-  if (!backdropPath) return null;
-  if (!posterPath) return null;
-  const backdropImageUrl = getImageUrl(backdropPath, backdropSize);
-  const posterImageUrl = getImageUrl(posterPath, posterSize);
+
+  const backdropImageUrl =
+    backdropPath && getImageUrl(backdropPath, backdropSize);
+  const posterImageUrl = posterPath && getImageUrl(posterPath, posterSize);
   const formattedDate = getFormattedDate(data.detail.release_date);
 
   const statsValue = {
@@ -46,15 +47,22 @@ const HeroSection = ({ data }: HeroSectionProps) => {
         initial='hidden'
         animate='visible'
       >
-        {!imageLoaded && (
+        {backdropImageUrl && !imageLoaded && (
           <Skeleton className='size-full bg-zinc-900 rounded-none' />
         )}
-        <img
-          src={backdropImageUrl}
-          alt={`${data.detail.title} image`}
-          onLoad={() => setImageLoaded(true)}
-          className={`size-full object-cover object-center ${imageLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        />
+        {backdropImageUrl ? (
+          <img
+            src={backdropImageUrl}
+            alt={`${data.detail.title} image`}
+            onLoad={() => setImageLoaded(true)}
+            className={`size-full object-cover object-center ${imageLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+          />
+        ) : (
+          <div className='flex flex-col gap-4 items-center pt-30 md:pt-100 lg:pt-50'>
+            <ImageOffIcon />
+            No Image
+          </div>
+        )}
         <FadeOverlay
           position='bottom'
           className='h-55.25 lg:h-auto lg:inset-y-0'
